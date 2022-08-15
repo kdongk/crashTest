@@ -1,0 +1,7 @@
+{
+  "host": "awseb-e-qwfjfipatb-stack-awsebrdsdatabase-fzxwvlfapsev.cqrhzq97zdr4.ap-northeast-2.rds.amazonaws.com",
+  "user": "root",
+  "password": "",
+  "port": "3306",
+  "database": "Crash_Talk"
+}
