@@ -7,7 +7,7 @@ import GV from "../../stores/global_variables";
 
 const Login = () => {
   const authCtx = useContext(AuthContext);
-  const [loginData, setLoginData] = useState(GV.getDefaultLoginForm());
+  const [loginData, setLoginData] = useState(GV.getDefaultLoginForm()); // input 값 관리를 위한 상태
 
   const inputHandler = (e) => {
     setLoginData({ ...loginData, [e.target.id]: e.target.value });
@@ -40,7 +40,9 @@ const Login = () => {
             placeholder={"Password"}
             onChange={inputHandler}
           />
-          <a href="/Users/in/Documents/CrashTalk/Crash-Talk/client/crash-talk/src/view/pages/Register">Forgot your password?</a>
+          <a href="/Users/in/Documents/CrashTalk/Crash-Talk/client/crash-talk/src/view/pages/Register">
+            Forgot your password?
+          </a>
           <Button type={"submit"}>SIGN IN</Button>
         </form>
       </div>
