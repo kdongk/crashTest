@@ -6,12 +6,12 @@ const requester = (function () {
   axios.defaults.withCredentials = true;
 
   return {
-    postUserData: async (header, data, url) => {
+    postUserData: async (header, data, ENDPOINT) => {
       const response = await axios({
-        url: `https://cors.io/?${url}`,
+        url: ENDPOINT,
         method: "POST",
         mode: "cors",
-        headers: header,
+        headers: { header },
         ContentType: "application/json",
         data: {
           ...data,

@@ -48,6 +48,11 @@ io.on("connect", (socket) => {
 });
 
 app.use(router);
-app.use(cors());
+app.post("/register", (req, res) => {
+  //res.header("Access-Control-Allow-Origin", "*");
+  res.send(200);
+  res.send({ data: { validity: true } });
+  console.log(res);
+});
 
 server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));

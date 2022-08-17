@@ -5,6 +5,12 @@ const GV = (function () {
     login: "LOGIN_USER",
     room_join: "JOIN_ROOM",
   };
+  const ENDPOINT = {
+    register: "/register",
+    login: "/login",
+    chat: "/chat/",
+    home: "/home",
+  };
   const defaultUserForm = {
     name: undefined,
     nickname: undefined,
@@ -23,6 +29,7 @@ const GV = (function () {
     getHeaders: () => HEADER,
     getDefaultUserForm: () => defaultUserForm,
     getDefaultLoginForm: () => defaultLoginForm,
+    getEndPoint: () => ENDPOINT,
   };
 })();
 

@@ -15,7 +15,11 @@ const Login = () => {
 
   const loginSubmitHandler = (event) => {
     event.preventDefault();
-    authCtx.authHandler(GV.getHeaders().login, loginData);
+    authCtx.authHandler(
+      GV.getHeaders().login,
+      loginData,
+      GV.getEndPoint().login
+    );
     setLoginData(GV.getDefaultLoginForm);
   };
 

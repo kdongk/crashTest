@@ -16,7 +16,7 @@ export const AuthContextProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태
   const [loginUserStatus, setLoginUserStatus] = useState(defaultUser); // 유저 정보에 대한 상태
 
-  const authHandler = (header, authData) => {
+  const authHandler = (header, authData, endpoint) => {
     // auth Data는 header에 따라 다르게 전달됨
     if (header === "LOGOUT_USER") {
       // 로그아웃
@@ -25,7 +25,7 @@ export const AuthContextProvider = (props) => {
       return;
     }
     //로그인 및 회원가입 리퀘스트
-    const response = requester.postUserData(header, authData);
+    const response = requester.postUserData(header, authData, endpoint);
     response.catch((reason) => {
       console.log(reason);
     });

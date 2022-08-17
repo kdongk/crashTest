@@ -17,7 +17,11 @@ const Register = () => {
 
   const registerSubmitHandler = (event) => {
     event.preventDefault();
-    authCtx.authHandler(GV.getHeaders().register, registerData);
+    authCtx.authHandler(
+      GV.getHeaders().register,
+      registerData,
+      GV.getEndPoint().register
+    );
     console.log(formRefer.current);
   };
 
