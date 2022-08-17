@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../components/UI/Button";
 import classes from "./Login.module.css";
 import { AuthContext } from "../../stores/auth-context";

@@ -3,6 +3,7 @@ const GV = (function () {
   const HEADER = {
     register: "REGISTER_USER",
     login: "LOGIN_USER",
+    room_join: "JOIN_ROOM",
   };
   const defaultUserForm = {
     name: undefined,
