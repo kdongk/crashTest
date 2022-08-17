@@ -49,9 +49,7 @@ io.on("connect", (socket) => {
 
 app.use(router);
 app.post("/register", (req, res) => {
-  //res.header("Access-Control-Allow-Origin", "*");
-  res.send(200);
-  res.send({ data: { validity: true } });
+  res.send({ data: { validity: true, ...req.data } });
   console.log(res);
 });
 

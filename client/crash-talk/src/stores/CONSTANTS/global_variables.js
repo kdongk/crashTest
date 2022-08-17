@@ -24,6 +24,19 @@ const GV = (function () {
     password: undefined,
   };
 
+  const chatLogs = {
+    users: [],
+    room_id: 0,
+    chat_log: [],
+    fetchDate: "",
+  };
+
+  const defaultChatLog = {
+    nickname: "",
+    chat: "",
+    date: "",
+  };
+
   return {
     getServerURL: () => URL, // URL 기본값
     getHeaders: () => HEADER,

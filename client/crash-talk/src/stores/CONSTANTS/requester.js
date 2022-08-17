@@ -16,8 +16,7 @@ const requester = (function () {
         data: {
           ...data,
         },
-      }).then((response) => {
-        console.log(response);
+        validateStatus: false,
       });
       return response;
     },
@@ -26,7 +25,6 @@ const requester = (function () {
         headers: header,
         auth: user,
       });
-
       return response;
     },
   };
