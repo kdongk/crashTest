@@ -24,18 +24,17 @@ export const AuthContextProvider = (props) => {
       setIsLoggedIn(false);
       return;
     }
-    try {
-      //로그인 및 회원가입 리퀘스트
-      const response = requester.postUserData(header, authData);
-      const result = response.data; // data 에는 user:유저 정보, validity:회원가입 및 로그인 유효성을 가져야함
-
-      if (result.validity) {
-        setIsLoggedIn(result.validity);
-        setLoginUserStatus(result.user);
-        console.log(result);
-      }
-    } catch (error) {
-      console.log(error);
+    //로그인 및 회원가입 리퀘스트
+    const response = requester.postUserData(header, authData);
+    response.catch((reason) => {
+      console.log(reason);
+    });
+    const result = response.data; // data 에는 user:유저 정보, validity:회원가입 및 로그인 유효성을 가져야함
+    console.log(result);
+    if (result.validity) {
+      setIsLoggedIn(result.validity);
+      setLoginUserStatus(result.user);
+      console.log(result);
     }
   };
 

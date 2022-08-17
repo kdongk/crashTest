@@ -1,15 +1,23 @@
 import axios from "axios";
 import GV from "./global_variables";
-import { type } from "@testing-library/user-event/dist/type";
 
 const requester = (function () {
+  axios.defaults.allowEI03 = true;
+  axios.defaults.withCredentials = true;
+
   return {
-    postUserData: async (header, data) => {
-      const response = await axios.post(GV.getServerURL(), {
+    postUserData: async (header, data, url) => {
+      const response = await axios({
+        url: `https://cors.io/?${url}`,
+        method: "POST",
+        mode: "cors",
         headers: header,
         ContentType: "application/json",
-        content: data,
-        validity: 0,
+        data: {
+          ...data,
+        },
+      }).then((response) => {
+        console.log(response);
       });
       return response;
     },
