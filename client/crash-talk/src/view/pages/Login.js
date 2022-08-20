@@ -9,7 +9,6 @@ import Card from "../components/UI/Card";
 
 const Login = () => {
   const authCtx = useContext(AuthContext);
-  π;
   const [inputLoginData, setInputLoginData] = useState(
     GV.getDefaultLoginForm()
   ); // input 값 관리를 위한 상태
