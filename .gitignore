@@ -13,7 +13,7 @@
 
 # misc
 .DS_Store
-idea
+.idea
 ideas
 .env.local
 .env.development.local
