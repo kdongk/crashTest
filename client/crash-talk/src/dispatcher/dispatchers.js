@@ -1,7 +1,8 @@
 import requester from "../stores/CONSTANTS/requester";
 import GV from "../stores/CONSTANTS/global_variables";
+import React from "react";
 
-const dispatchers = (function () {
+const useDispatchers = (function () {
   // 디스패쳐 함수들을 관리하는 파일
   const registerDispatcher = async (actionData) => {
     // 회원가입 디스패쳐
@@ -43,4 +44,4 @@ const dispatchers = (function () {
   };
 })();
 
-export default dispatchers;
+export default useDispatchers;

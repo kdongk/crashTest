@@ -4,6 +4,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../stores/auth-context";
 import GV from "../../stores/CONSTANTS/global_variables";
 import action from "../../actions/action";
+import Card from "../components/UI/Card";
+import classes from "./Register.module.css";
 
 const Register = () => {
   const authCtx = useContext(AuthContext);
@@ -11,7 +13,6 @@ const Register = () => {
 
   const inputChangeHandler = (event) => {
     setRegisterData({ ...registerData, [event.target.id]: event.target.value });
-    console.log(registerData);
   };
 
   const registerSubmitHandler = (event) => {
@@ -21,7 +22,7 @@ const Register = () => {
   };
 
   return (
-    <div className={""}>
+    <Card>
       <header className={""}>
         <img
           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3219/logo.svg"
@@ -34,7 +35,7 @@ const Register = () => {
             id={"name"}
             type="text"
             placeholder="Name"
-            className={""}
+            className={classes.input}
             onChange={inputChangeHandler}
           />
         </div>
@@ -43,7 +44,7 @@ const Register = () => {
             id={"nickname"}
             type="text"
             placeholder="NickName"
-            className={""}
+            className={classes.input}
             onChange={inputChangeHandler}
           />
         </div>
@@ -52,7 +53,7 @@ const Register = () => {
             id={"email"}
             type="email"
             placeholder="Email"
-            className={""}
+            className={classes.input}
             onChange={inputChangeHandler}
           />
         </div>
@@ -61,15 +62,15 @@ const Register = () => {
             id={"password"}
             type="password"
             placeholder="Password"
-            className={""}
+            className={classes.input}
             onChange={inputChangeHandler}
           />
         </div>
-        <Button className={""} type="submit">
+        <Button className={classes.button} type="submit">
           Register
         </Button>
       </form>
-    </div>
+    </Card>
   );
 };
 
