@@ -21,12 +21,27 @@ router.get("/", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-    if (req.headers.header === "LOGIN_USER") {
-        //DB 확인
-        //DB에 겹치는게 있으면
-        res.send({data: {user: "", validity: true}});
-    }
+    // let email = req.body.email;
+    // let password = req.body.password;
+    // let nick_name = req.body.nick_name;
+    //
+    // let checkEmail = "SELECT email FROM user WHERE email='" + email + "';";
+    //
+    // connection.query(checkEmail, function (err, rows) {
+    //     if (rows.length == 1 && req.headers.header === "LOGIN_USER") {
+    //         let sql = {
+    //             email: email,
+    //             password: password,
+    //             nick_name: nick_name,
+    //         };
+    //         res.send('로그인 성공!');
+    //     }
+    //     else {
+    //         res.send('가입하지 않은 유저입니다');
+    //     }
+    // });
 });
+
 
 router.post("/register", (req, res) => {
     console.log(req.body);
@@ -52,7 +67,7 @@ router.post("/register", (req, res) => {
             connection.query('INSERT INTO user set ?', sql, function (err, rows) {
                 if (err) throw err;
                 else {
-                    res.send('삽입 성공');
+                    res.send('가입 성공');
                 }
             });
         } else {
