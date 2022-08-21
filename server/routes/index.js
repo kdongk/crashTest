@@ -14,16 +14,13 @@ const connection = mysql.createConnection({
     port: conf.port,
     database: conf.database,
 });
-connection.connect();   // database.json형식으로 db연결
-
-//module.exports= (connection) => {
+connection.connect();
 
 router.get("/", (req, res) => {
     res.send("server is up and running");
 });
 
 router.post("/login", (req, res) => {
-    //res.send({ data: { validity: true } });
     if (req.headers.header === "LOGIN_USER") {
         //DB 확인
         //DB에 겹치는게 있으면
@@ -32,38 +29,36 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/register", (req, res) => {
-    //res.send({ data: { validity: true } });
     console.log(req.body);
 
-    if (req.headers.header === "REGISTER_USER") {
-        // db 조회해서 아이디가 중복인지 여부 파악
-        
+    let name = req.body.name;
+    let email = req.body.email;
+    let password = req.body.password;
+    let nick_name = req.body.nickname;
+    let symbol_id = null; // 자동으로 1씩 증가
 
+    let checkEmail = "SELECT email FROM user WHERE email='" + email + "';";
 
-        console.log(req.body);
-        let sql = 'INSERT INTO user VALUES (?, ?, ?, ?, ?)';
+    connection.query(checkEmail, function (err, rows) {
+        if (rows.length == 0 && req.headers.header === "REGISTER_USER") {
+            let sql = {
+                name: name,
+                email: email,
+                password: password,
+                nick_name: nick_name,
+                symbol_id: symbol_id
+            };
 
-        let name = req.body.name;
-        let email = req.body.email;
-        let password = req.body.password;
-        let nick_name = req.body.nickname;
-        let symbol_id = null; // 자동으로 1씩 증가
-        let params = [name, email, password, nick_name, symbol_id];
-
-        connection.query(sql, params,
-            (err, rows, fields) => {
-                res.send(true);
-                // console.log(err);
-                // console.log(rows);
-            })
-
-        // push 성공 시, validity true 반환
-        //
-        // const data = {
-        //   validity: true,
-        // };
-        // res.send(data);
-    }
+            connection.query('INSERT INTO user set ?', sql, function (err, rows) {
+                if (err) throw err;
+                else {
+                    res.send('삽입 성공');
+                }
+            });
+        } else {
+            res.send('중복된 아이디');
+        }
+    });
 });
 
 router.post("/home", (req, res) => {
