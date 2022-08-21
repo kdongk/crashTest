@@ -49,7 +49,7 @@ router.post("/register", (req, res) => {
     let name = req.body.name;
     let email = req.body.email;
     let password = req.body.password;
-    let nick_name = req.body.nickname;
+    let nick_name = req.body.nick_name;
     let symbol_id = null; // 자동으로 1씩 증가
 
     let checkEmail = "SELECT email FROM user WHERE email='" + email + "';";
