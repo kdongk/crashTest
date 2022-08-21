@@ -21,25 +21,24 @@ router.get("/", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-    // let email = req.body.email;
-    // let password = req.body.password;
-    // let nick_name = req.body.nick_name;
-    //
-    // let checkEmail = "SELECT email FROM user WHERE email='" + email + "';";
-    //
-    // connection.query(checkEmail, function (err, rows) {
-    //     if (rows.length == 1 && req.headers.header === "LOGIN_USER") {
-    //         let sql = {
-    //             email: email,
-    //             password: password,
-    //             nick_name: nick_name,
-    //         };
-    //         res.send('로그인 성공!');
-    //     }
-    //     else {
-    //         res.send('가입하지 않은 유저입니다');
-    //     }
-    // });
+    let email = req.body.email;
+    let password = req.body.password;
+
+    let checkEmail = "SELECT email FROM user WHERE email='" + email + "';";
+
+    connection.query(checkEmail, function (err, rows) {
+        if (rows.length == 1 && req.headers.header === "LOGIN_USER") {
+            let sql = {
+                email: email,
+                password: password,
+            };
+            console.log(sql);
+            res.send('로그인 성공!');
+        }
+        else {
+            res.send('가입하지 않은 유저입니다');
+        }
+    });
 });
 
 
@@ -49,8 +48,8 @@ router.post("/register", (req, res) => {
     let name = req.body.name;
     let email = req.body.email;
     let password = req.body.password;
-    let nick_name = req.body.nick_name;
-    let symbol_id = null; // 자동으로 1씩 증가
+    let nick_name = req.body.nickname;
+    let symbol_id = null;
 
     let checkEmail = "SELECT email FROM user WHERE email='" + email + "';";
 
