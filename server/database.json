@@ -1,7 +1,7 @@
 {
-  "host": "localhost",
+  "host": "awseb-e-qwfjfipatb-stack-awsebrdsdatabase-fzxwvlfapsev.cqrhzq97zdr4.ap-northeast-2.rds.amazonaws.com",
   "user": "root",
-  "password": "",
+  "password": "source-s419!",
   "port": "3306",
-  "database": "crash_talk"
+  "database": "Crash_Talk"
 }

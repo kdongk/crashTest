@@ -26,8 +26,5 @@ module.exports = (server, app) => {
         socket.on('chat', (data) => {
             socket.to(data.room).emit(data);
         });
-
     });
-
-
 };

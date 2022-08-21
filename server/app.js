@@ -5,15 +5,12 @@ const webSocket = require("./socket");
 const indexRouter = require("./routes");
 
 const app = express();
-app.set("port", process.env.PORT || 7727);
+app.set("port", process.env.PORT || 3001);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
 app.use("/", indexRouter);
-
-
 
 // 라우터 존재 x 시
 app.use((req, res, next) => {
