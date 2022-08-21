@@ -37,6 +37,8 @@ router.post("/register", (req, res) => {
 
     if (req.headers.header === "REGISTER_USER") {
         // db 조회해서 아이디가 중복인지 여부 파악
+        
+
 
         console.log(req.body);
         let sql = 'INSERT INTO user VALUES (?, ?, ?, ?, ?)';
