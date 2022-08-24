@@ -6,7 +6,7 @@ import io from "socket.io-client";
 
 import GV from "../../stores/CONSTANTS/global_variables";
 
-let socket;
+
 
 const Chat = (props) => {
   const [nameState, setNameState] = useState("");
@@ -30,25 +30,9 @@ const Chat = (props) => {
     const { name, room } = queryString.parse(location.search);
     setNameState(String(name));
     setRoomState(String(room));
-    socket = io({
-      cors: {
-        origin: `${GV.getServerURL()}`,
-        methods: ["GET", "POST"],
-        credentials: true,
-        transports: ["websocket", "polling"],
-      },
-      allowEI03: true,
-    });
 
-    socket.emit("join", {
-      name,
-      room,
-      callback: (error) => {
-        if (error) {
-          alert(error);
-        }
-      },
-    });
+
+
   }, [location.search]);
 
   useEffect(() => {

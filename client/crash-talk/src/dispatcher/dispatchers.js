@@ -1,6 +1,7 @@
 import requester from "../stores/CONSTANTS/requester";
 import GV from "../stores/CONSTANTS/global_variables";
 import React from "react";
+import io from "socket.io-client";
 
 const useDispatchers = (function () {
   // 디스패쳐 함수들을 관리하는 파일
@@ -34,7 +35,27 @@ const useDispatchers = (function () {
   };
   const joinRoomDispatcher = (actionData) => {
     // 채팅방 입장 디스패쳐
-    return;
+    const socket = io({ // 소켓 연결
+      cors: {
+        origin: `${GV.getServerURL()}`,
+        methods: ["GET", "POST"],
+        credentials: true,
+        transports: ["websocket", "polling"],
+      },
+      allowEI03: true,
+    });
+
+    socket.emit("join", {
+      name: actionData.name,
+      room: actionData.room,
+      callback: (error) => {
+        if (error) {
+          alert(error);
+        }
+      },
+    });
+
+    return socket;
   };
 
   return {
