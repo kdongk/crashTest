@@ -2,13 +2,14 @@ import React, { useContext, useState } from "react";
 import Button from "../components/UI/Button";
 import classes from "./Login.module.css";
 import { AuthContext } from "../../stores/auth-context";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GV from "../../stores/CONSTANTS/global_variables";
 import action from "../../actions/action";
 import Card from "../components/UI/Card";
 
 const Login = () => {
   const authCtx = useContext(AuthContext);
+  const redirector = useNavigate();
   const [inputLoginData, setInputLoginData] = useState(
     GV.getDefaultLoginForm()
   ); // input 값 관리를 위한 상태
@@ -22,11 +23,12 @@ const Login = () => {
     action.callLoginAction(inputLoginData);
     authCtx.loginStatusHandler(action.dispatch());
     setInputLoginData(GV.getDefaultLoginForm);
+    redirector("/home");
   };
 
   return (
     <Card>
-      <form onSubmit={loginSubmitHandler} on>
+      <form onSubmit={loginSubmitHandler}>
         <div>
           <h1 className={classes.h1}>SIGN IN</h1>
           <input

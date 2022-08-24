@@ -16,7 +16,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "client": "cd ../../crashtalk_full && cd client && cd crash-talk && npm start",
+    "client": "cd ../ && cd client && cd crash-talk && npm start",
     "server": "nodemon app.js",
     "dev": "concurrently --kill-others-on-fail \"npm run client\" \"npm run server\""
   },

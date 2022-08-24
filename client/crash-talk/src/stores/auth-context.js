@@ -18,11 +18,15 @@ export const AuthContextProvider = (props) => {
   const [loginUserStatus, setLoginUserStatus] = useState(defaultUser); // 유저 정보에 대한 상태
 
   const loginStatusHandler = (res) => {
-    // 프로미스 객체로 상태 핸들링
+    // 로그인 이벤트 핸들러
     res.then((res) => {
-      console.log(res);
-      setIsLoggedIn(true);
-      setLoginUserStatus(res);
+      const data = res.data;
+      if (data.validity) {
+        setIsLoggedIn(true);
+        setLoginUserStatus(data.userInfo);
+      } else {
+        alert(data.reason);
+      }
     });
   };
 

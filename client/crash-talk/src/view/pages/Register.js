@@ -6,9 +6,11 @@ import GV from "../../stores/CONSTANTS/global_variables";
 import action from "../../actions/action";
 import Card from "../components/UI/Card";
 import classes from "./Register.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const authCtx = useContext(AuthContext);
+  const redirector = useNavigate();
   const [registerData, setRegisterData] = useState(GV.getDefaultUserForm());
 
   const inputChangeHandler = (event) => {
@@ -19,6 +21,7 @@ const Register = () => {
     event.preventDefault();
     action.callRegisterAction(registerData); // 액션 발생 및 액션 객체 데이터 전달
     authCtx.loginStatusHandler(action.dispatch()); // 디스패치 함수 실행 결과로 반환된 프라미스 객체를 인수로 전달
+    redirector("/home");
   };
 
   return (
