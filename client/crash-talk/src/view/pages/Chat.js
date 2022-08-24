@@ -6,8 +6,6 @@ import io from "socket.io-client";
 
 import GV from "../../stores/CONSTANTS/global_variables";
 
-
-
 const Chat = (props) => {
   const [nameState, setNameState] = useState("");
   const [roomState, setRoomState] = useState("");
@@ -17,9 +15,10 @@ const Chat = (props) => {
 
   const sendMessage = (event) => {
     event.preventDefault();
-    if (message) {
-      socket.emit("sendMessage", message, () => setMessage(""));
-    }
+    console.log("asd");
+    // if (message) {
+    //   socket.emit("sendMessage", message, () => setMessage(""));
+    // }
   };
 
   const inputChangeHandler = (event) => setMessage(event.target.value);
@@ -30,16 +29,13 @@ const Chat = (props) => {
     const { name, room } = queryString.parse(location.search);
     setNameState(String(name));
     setRoomState(String(room));
-
-
-
   }, [location.search]);
 
   useEffect(() => {
-    socket.on("message", (message) => {
-      setMessages([...messages, message]);
-    });
-    console.log("message:", message, "messages:", messages);
+    // socket.on("message", (message) => {
+    //   setMessages([...messages, message]);
+    // });
+    // console.log("message:", message, "messages:", messages);
   }, [messages]);
 
   return (

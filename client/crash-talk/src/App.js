@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Login from "./view/pages/Login";
 import Register from "./view/pages/Register";
 import Home from "./view/pages/Home";
@@ -12,10 +17,11 @@ const App = () => {
     <AuthContextProvider>
       <Router>
         <Routes>
-          <Route path={"/"} element={<Home />}></Route>
+          <Route path={"/home"} element={<Home />}></Route>
           <Route path={"/chat"} element={<Chat />}></Route>
           <Route path={"/register"} element={<Register />}></Route>
           <Route path={"/login"} element={<Login />}></Route>
+          <Route path={"*"} element={<Navigate to={"/login"} replace />} />
         </Routes>
       </Router>
     </AuthContextProvider>
