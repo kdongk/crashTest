@@ -1,16 +1,18 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const dotenv = require('dotenv')
-const path = require('path');
-const nunjucks = require('nunjucks');
-
+import express from "express";
+import nunjucks from 'nunjucks';
+import helmet from 'helmet';
+import dotenv from 'dotenv';
 dotenv.config();
 
-const webSocket = require("./socket");
-const indexRouter = require("./routes");
-
-
 const app = express();
+
+// import webSocket from "./socket";
+import authRouter from "./routes/auth.js";
+import { config } from './config.js';
+import { db } from "./db/auth.js";
+
+app.use(helmet());  // 보안용
+
 app.set("port", process.env.PORT || 3001);
 app.set('view engine', 'html');
 nunjucks.configure('views', {
@@ -22,8 +24,7 @@ nunjucks.configure('views', {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/", indexRouter);
-
+app.use("/", authRouter);
 
 
 // 라우터 존재 x 시
@@ -42,8 +43,11 @@ app.use((err, req, res, next) => {
 });
 
 //리스너
-const server = app.listen(app.get("port"), () => {
-    console.log(app.get("port"), "번 포트에서 대기 중");
-});
+db.getConnection().then();
+app.listen(config.host.port);
 
-webSocket(server, app);
+// const server = app.listen(app.get("port"), () => {
+//     console.log(app.get("port"), "번 포트에서 대기 중");
+// });
+
+// webSocket(server, app);
