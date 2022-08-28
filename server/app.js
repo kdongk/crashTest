@@ -1,5 +1,4 @@
 import express from "express";
-import nunjucks from 'nunjucks';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -12,14 +11,6 @@ import { config } from './config.js';
 import { db } from "./db/auth.js";
 
 app.use(helmet());  // 보안용
-
-app.set("port", process.env.PORT || 3001);
-app.set('view engine', 'html');
-nunjucks.configure('views', {
-    express: app,
-    watch: true,
-});
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
